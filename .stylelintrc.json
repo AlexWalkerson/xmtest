@@ -1,0 +1,42 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "ignoreFiles": [
+    "**/node_modules/**",
+    "**/dist/**"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "extend",
+          "mixin",
+          "include"
+        ]
+      }
+    ],
+    "font-family-name-quotes": "always-unless-keyword",
+    "function-url-quotes": "always",
+    "selector-attribute-quotes": "always",
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": [
+          "ng-deep"
+        ]
+      }
+    ],
+    "selector-type-no-unknown": [
+      true
+    ],
+    "string-quotes": "single",
+    "color-named": "never",
+    "declaration-no-important": true,
+    "selector-class-pattern": "(wfc-)|(p-)",
+    "font-weight-notation": "numeric",
+    "no-empty-source": null
+  }
+}
