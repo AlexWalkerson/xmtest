@@ -1,11 +1,14 @@
-<div class="wrapper">
-    <!-- top navbar-->
+<div class="container">
+  <!-- top navbar-->
+  <div class="row">
     <app-header></app-header>
-    <!-- Main section-->
-    <section class="section-container">
-        <!-- Page content-->
-        <div class="content-wrapper">
-            <router-outlet></router-outlet>
-        </div>
-    </section>
+  </div>
+
+  <!-- Main section-->
+  <section class="row">
+    <!-- Page content-->
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
 </div>
