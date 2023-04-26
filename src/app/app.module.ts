@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { ImageTeaserComponent } from './components/image-teaser/image-teaser.component';
 import { ImageFullComponent } from './components/image-full/image-full.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ImageFullComponent } from './components/image-full/image-full.component
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    LayoutModule
+    LayoutModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
