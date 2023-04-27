@@ -1,1 +1,6 @@
-<p>favorite works!</p>
+<div class="row">
+  <div class="col-12 col-sm-4 col-md-3" *ngFor="let photo of listPhoto; trackBy: trackByFn">
+    <app-image-teaser [src]="photo.src" [id]="photo.id" mode="link"></app-image-teaser>
+    {{ photo.id }}
+  </div>
+</div>

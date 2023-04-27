@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,6 +31,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatButtonModule,
     ShareModule
   ],
   providers: [],
