@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { FavoriteService } from '@app/core/services/favorite.service';
+
 
 @Component({
   selector: 'app-image-teaser',
@@ -15,16 +17,17 @@ export class ImageTeaserComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    private readonly favoriteService: FavoriteService
   ) {}
 
   save() {
+    this.favoriteService.add(this.id);
     this.snackBar.open('Added to Favorite', '', {duration: 1000});
   }
 
   show() {
-    this.router.navigate(['image', this.id], {relativeTo: this.route});
+    this.router.navigate(['image', this.id]);
   }
 
   clickOnPhoto(event: MouseEvent) {
