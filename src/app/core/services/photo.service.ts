@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PhotoHttpService } from './photo-http.service';
 
@@ -12,15 +12,17 @@ export class PhotoService {
 
   constructor(private readonly photoHttp: PhotoHttpService) { }
 
-  getOriginalPhotoSrc(id: number): Observable<string> {
+  getOriginalPhotoSrc(ids: number[]): Observable<string[]> {
     return this.photoHttp.getPhotoList().pipe(
-      map(list => `${this.photoPath}${list[id].original}`)
+      delay(1000),
+      map(list => ids.map(id => `${this.photoPath}${list[id].original}`))
     );
   }
 
-  getTeaserPhotoSrc(id: number): Observable<string> {
+  getTeaserPhotoSrc(ids: number[]): Observable<string[]> {
     return this.photoHttp.getPhotoList().pipe(
-      map(list => `${this.photoPath}${list[id].small}`)
+      delay(1000),
+      map(list => ids.map(id => `${this.photoPath}${list[id].small}`))
     );
   }
 

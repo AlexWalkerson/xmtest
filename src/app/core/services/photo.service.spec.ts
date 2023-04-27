@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { jest } from '@jest/globals';
-import { of } from 'rxjs';
+import { delay, of } from 'rxjs';
 import { IPhoto } from 'src/app/core/models/IPhoto';
 import { PhotoHttpService } from './photo-http.service';
 
@@ -39,28 +39,38 @@ describe('PhotoService', () => {
   });
 
   describe('getOriginalPhotoSrc', () => {
-    it('should get the original photo source', () => {
-      const id = 0;
-      const expectedSrc = `/assets/images-output/${mockPhotoList[id].original}`;
+    it('should return the original photo URLs for given ids', (done) => {
+      const ids = [0, 1, 2];
+      const photoList = [
+        { original: 'photo1.jpg', small: 'photo1_small.jpg' },
+        { original: 'photo2.jpg', small: 'photo2_small.jpg' },
+        { original: 'photo3.jpg', small: 'photo3_small.jpg' },
+      ];
+      const expectedUrls = ids.map((id) => `/assets/images-output/${photoList[id].original}`);
+      jest.spyOn(photoHttpMock, 'getPhotoList').mockReturnValueOnce(of(photoList).pipe(delay(1000)));
 
-      service.getOriginalPhotoSrc(id).subscribe((src: string) => {
-        expect(src).toEqual(expectedSrc);
+      service.getOriginalPhotoSrc(ids).subscribe((result) => {
+        expect(result).toEqual(expectedUrls);
+        done();
       });
-
-      expect(photoHttpMock.getPhotoList).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('getTeaserPhotoSrc', () => {
-    it('should get the teaser photo source', () => {
-      const id = 1;
-      const expectedSrc = `/assets/images-output/${mockPhotoList[id].small}`;
+    it('should return the teaser photo URLs for given ids', (done) => {
+      const ids = [0, 1, 2];
+      const photoList = [
+        { original: 'photo1.jpg', small: 'photo1_small.jpg' },
+        { original: 'photo2.jpg', small: 'photo2_small.jpg' },
+        { original: 'photo3.jpg', small: 'photo3_small.jpg' },
+      ];
+      const expectedUrls = ids.map((id) => `/assets/images-output/${photoList[id].small}`);
+      jest.spyOn(photoHttpMock, 'getPhotoList').mockReturnValueOnce(of(photoList).pipe(delay(1000)));
 
-      service.getTeaserPhotoSrc(id).subscribe((src: string) => {
-        expect(src).toEqual(expectedSrc);
+      service.getTeaserPhotoSrc(ids).subscribe((result) => {
+        expect(result).toEqual(expectedUrls);
+        done();
       });
-
-      expect(photoHttpMock.getPhotoList).toHaveBeenCalledTimes(1);
     });
   });
 
