@@ -10,6 +10,9 @@ import { InfiniteScrollDirective } from './directives/infinite-scroll.directive'
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    InfiniteScrollDirective
   ]
 })
 export class ShareModule { }
